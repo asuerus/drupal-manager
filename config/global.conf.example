@@ -13,7 +13,7 @@ PORT_END=8999
 
 # ── Domein ────────────────────────────────────────────────────────────────────
 # Basisdomein — hostnaam.BASE_DOMAIN wordt het volledige domein per site
-BASE_DOMAIN="v-tuijl.nl"
+BASE_DOMAIN="jouwdomein.nl"
 
 # ── Traefik ───────────────────────────────────────────────────────────────────
 CERT_RESOLVER="letsencrypt"
@@ -22,7 +22,7 @@ TRAEFIK_ENTRYPOINT_HTTPS="websecure"
 CATCHALL_PORT=8099          # Nginx poort voor de "site niet gevonden" pagina
 
 # Traefik dynamic config — één bestand, beheerd via Python (yaml)
-TRAEFIK_DYNAMIC_FILE="/home/asuerus/docker/traefik/traefik-dynamic.yaml"
+TRAEFIK_DYNAMIC_FILE="/home/gebruiker/docker/traefik/traefik-dynamic.yaml"
 
 # Gateway-IP van het traefik-net Docker-netwerk.
 # Traefik draait in Docker en bereikt native Nginx-backends via dit IP.
@@ -38,8 +38,8 @@ COMPOSER_BIN="/usr/local/bin/composer"
 
 # ── Authentik (optioneel) ─────────────────────────────────────────────────────
 # Zet AUTHENTIK_ENABLED=true en vul de URLs in als je Authentik wilt gebruiken
-AUTHENTIK_ENABLED=true
-AUTHENTIK_URL="https://authentik.v-tuijl.nl"
+AUTHENTIK_ENABLED=false
+AUTHENTIK_URL="https://authentik.jouwdomein.nl"
 AUTHENTIK_OUTPOST_URL="http://authentik-proxy:9000"
 AUTHENTIK_MIDDLEWARE_NAME="authentik"
 # API token: Authentik → Admin → Directory → Tokens → Token aanmaken (intent: API)
