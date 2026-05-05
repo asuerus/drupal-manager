@@ -39,6 +39,8 @@ run_drush_install() {
     local admin_user="$5"
     local admin_pass="$6"
     local php_bin_path="$7"
+    local db_root_pass
+    db_root_pass=$(cat "$DB_ROOT_PASSWORD_FILE")
 
     log_step "drush site:install (profiel: ${install_profile})..."
 
@@ -46,8 +48,12 @@ run_drush_install() {
 
     # vendor/bin/drush is a bash wrapper — call drush.php directly with the
     # correct PHP binary to avoid PHP trying to execute a shell script.
+    # --db-su/--db-su-pw: drush uses root to drop/create the DB, then writes
+    # the site user credentials to settings.php.
     "$php_bin_path" vendor/drush/drush/drush.php site:install "${install_profile}" \
         --db-url="${db_url}" \
+        --db-su=root \
+        --db-su-pw="${db_root_pass}" \
         --site-name="${site_name}" \
         --account-name="${admin_user}" \
         --account-pass="${admin_pass}" \
